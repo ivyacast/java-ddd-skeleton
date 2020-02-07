@@ -11,16 +11,12 @@ import java.util.stream.Collectors;
 
 public class CourseService {
     private final CourseRepository repository;
-    private final   EventBus         eventBus;
+    private final EventBus         eventBus;
 
     public CourseService(CourseRepository repository, EventBus eventBus) {
         this.repository = repository;
         this.eventBus   = eventBus;
     }
-
-
-
-
 
     public void create(CourseId id, CourseName name, CourseDuration duration) {
         Course course = Course.create(id, name, duration);
