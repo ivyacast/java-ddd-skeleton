@@ -1,5 +1,6 @@
 package tv.codely.mooc.courses.application.create;
 
+import tv.codely.mooc.courses.application.CourseService;
 import tv.codely.mooc.courses.domain.CourseDuration;
 import tv.codely.mooc.courses.domain.CourseId;
 import tv.codely.mooc.courses.domain.CourseName;
@@ -8,10 +9,10 @@ import tv.codely.shared.domain.bus.command.CommandHandler;
 
 @Service
 public final class CreateCourseCommandHandler implements CommandHandler<CreateCourseCommand> {
-    private final CourseCreator creator;
+    private final CourseService service;
 
-    public CreateCourseCommandHandler(CourseCreator creator) {
-        this.creator = creator;
+    public CreateCourseCommandHandler(CourseService service) {
+        this.service = service;
     }
 
     @Override
@@ -20,6 +21,6 @@ public final class CreateCourseCommandHandler implements CommandHandler<CreateCo
         CourseName     name     = new CourseName(command.name());
         CourseDuration duration = new CourseDuration(command.duration());
 
-        creator.create(id, name, duration);
+        service.create(id, name, duration);
     }
 }

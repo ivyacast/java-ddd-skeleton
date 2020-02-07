@@ -1,6 +1,7 @@
 package tv.codely.mooc.courses.application;
 
 import tv.codely.mooc.courses.domain.*;
+import tv.codely.shared.domain.Service;
 import tv.codely.shared.domain.bus.event.EventBus;
 import tv.codely.shared.domain.criteria.Criteria;
 import tv.codely.shared.domain.criteria.Filters;
@@ -9,6 +10,7 @@ import tv.codely.shared.domain.criteria.Order;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class CourseService {
     private final CourseRepository repository;
     private final EventBus         eventBus;

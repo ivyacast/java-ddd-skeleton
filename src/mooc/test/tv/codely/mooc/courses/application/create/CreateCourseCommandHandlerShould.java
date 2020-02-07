@@ -3,6 +3,7 @@ package tv.codely.mooc.courses.application.create;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tv.codely.mooc.courses.CoursesModuleUnitTestCase;
+import tv.codely.mooc.courses.application.CourseService;
 import tv.codely.mooc.courses.domain.Course;
 import tv.codely.mooc.courses.domain.CourseCreatedDomainEventMother;
 import tv.codely.mooc.courses.domain.CourseMother;
@@ -15,7 +16,7 @@ final class CreateCourseCommandHandlerShould extends CoursesModuleUnitTestCase {
     protected void setUp() {
         super.setUp();
 
-        handler = new CreateCourseCommandHandler(new CourseCreator(repository, eventBus));
+        handler = new CreateCourseCommandHandler(new CourseService(repository, eventBus));
     }
 
     @Test
