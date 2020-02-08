@@ -28,9 +28,13 @@ public class CourseService {
     }
 
     public CourseResponse find(CourseId id) throws CourseNotExist {
-        return repository.search(id)
-                         .map(CourseResponse::fromAggregate)
-                         .orElseThrow(() -> new CourseNotExist(id));
+        Optional<Course> course = repository.search(id);
+
+        if (course.isPresent()) {
+            return CourseResponse.fromAggregate(course.get());
+        } else {
+            throw new CourseNotExist(id);
+        }
     }
 
     public CoursesResponse searchLast(int courses) {
