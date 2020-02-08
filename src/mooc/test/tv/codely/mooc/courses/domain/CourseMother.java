@@ -18,4 +18,8 @@ public final class CourseMother {
     public static Course random() {
         return create(CourseIdMother.random(), CourseNameMother.random(), CourseDurationMother.random());
     }
+
+    public static Course withId(String id) {
+        return create(CourseIdMother.create(id), CourseNameMother.random(), CourseDurationMother.random());
+    }
 }
