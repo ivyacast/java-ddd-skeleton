@@ -1,29 +1,29 @@
 package tv.codely.mooc.students.application.register;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tv.codely.mooc.students.StudentModuleUnitTestCase;
+import tv.codely.mooc.students.domain.Student;
+import tv.codely.mooc.students.domain.StudentMother;
 
-import tv.codely.mooc.students.domain.*;
+class RegisterStudentShould extends StudentModuleUnitTestCase {
 
-import static org.mockito.Mockito.*;
+    RegisterStudent register;
 
-class RegisterStudentShould {
+    @BeforeEach
+    protected void setUp() {
+        super.setUp();
+        register = new RegisterStudent(repository);
+    }
 
     @Test
     void save_a_valid_student() {
-        StudentRepository repository = mock(StudentRepository.class);
-        RegisterStudent register = new RegisterStudent(repository);
+        RegisterStudentRequest request = RegisterStudentRequestMother.random();
 
-        RegisterStudentRequest request = new RegisterStudentRequest("1aab45ba-3c7a-4344-8936-78466eca77fa", "Goku", "Son", "songoku@kamehouse.com");
-
-        Student student = new Student(
-            new StudentId(request.id()),
-            new StudentName(request.name()),
-            new StudentSurName(request.surname()),
-            new StudentEmail(request.email())
-        );
+        Student student = StudentMother.fromRequest(request);
 
         register.register(request);
 
-        verify(repository, atLeastOnce()).save(student);
+        shouldHaveSaved(student);
     }
 }

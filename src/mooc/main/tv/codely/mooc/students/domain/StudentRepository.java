@@ -5,6 +5,8 @@ import java.util.Optional;
 
 public interface StudentRepository {
     List<Student> searchAll();
-    Optional<Student> search(String id);
+
+    Optional<Student> search(StudentId id);
+
     void save(Student student);
 }

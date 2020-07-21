@@ -37,8 +37,8 @@ public final class InMemoryStudentRepository implements StudentRepository {
     }
 
     @Override
-    public Optional<Student> search(String id) {
-        return Optional.ofNullable(students.get(id));
+    public Optional<Student> search(StudentId id) {
+        return Optional.ofNullable(students.get(id.value()));
     }
 
     @Override
