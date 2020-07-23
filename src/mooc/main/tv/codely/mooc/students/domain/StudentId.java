@@ -6,4 +6,8 @@ public final class StudentId extends Identifier {
     public StudentId(String value) {
         super(value);
     }
+
+    public StudentId() {
+        super("");
+    }
 }

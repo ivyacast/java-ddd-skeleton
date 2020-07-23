@@ -21,9 +21,7 @@ public class MySqlCourseRepository extends HibernateRepository<Course> implement
     }
 
     @Override
-    public void save(Course course) {
-        persist(course);
-    }
+    public void save(Course course) {   persist(course); }
 
     @Override
     public Optional<Course> search(CourseId id) {

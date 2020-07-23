@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public final class InMemoryStudentRepository implements StudentRepository {
     private UuidGenerator generator;
     private HashMap<String, Student> students = new HashMap<>();

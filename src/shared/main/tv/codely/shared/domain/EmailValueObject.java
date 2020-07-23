@@ -3,9 +3,12 @@ package tv.codely.shared.domain;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class EmailValueObject {
+public abstract class EmailValueObject {
     private final String value;
 
+    public EmailValueObject() {
+        value = "";
+    }
     public EmailValueObject(String value) {
         ensureValidEmail(value);
         this.value = value;
