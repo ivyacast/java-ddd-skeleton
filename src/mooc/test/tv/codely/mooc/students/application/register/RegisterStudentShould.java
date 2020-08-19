@@ -3,8 +3,10 @@ package tv.codely.mooc.students.application.register;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tv.codely.mooc.students.StudentModuleUnitTestCase;
+import tv.codely.mooc.students.domain.RegisteredStudentDomainEventMother;
 import tv.codely.mooc.students.domain.Student;
 import tv.codely.mooc.students.domain.StudentMother;
+import tv.codely.shared.domain.student.RegisteredStudentDomainEvent;
 
 class RegisterStudentShould extends StudentModuleUnitTestCase {
 
@@ -13,7 +15,7 @@ class RegisterStudentShould extends StudentModuleUnitTestCase {
     @BeforeEach
     protected void setUp() {
         super.setUp();
-        register = new RegisterStudent(repository);
+        register = new RegisterStudent(repository, eventBus);
     }
 
     @Test
@@ -22,8 +24,12 @@ class RegisterStudentShould extends StudentModuleUnitTestCase {
 
         Student student = StudentMother.fromRequest(request);
 
+        RegisteredStudentDomainEvent domainEvent = RegisteredStudentDomainEventMother.fromStudent(student);
+
         register.register(request);
 
         shouldHaveSaved(student);
+
+       shouldHavePublished(domainEvent);
     }
 }
